@@ -9,9 +9,11 @@ const UIElelemts = ({ changeTheme, dark }) => {
   const [first, setFirst] = useState(null);
 
   async function dataFetch() {
-    await axios.get("/data.json").then(({ data }) => {
-      setDataset(data);
-    });
+    await axios
+      .get("https://crypto-api-iwyr.onrender.com/top10")
+      .then(({ data }) => {
+        setDataset(data);
+      });
   }
 
   useEffect(() => {
