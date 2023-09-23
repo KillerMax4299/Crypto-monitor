@@ -2,7 +2,7 @@ import Row_elem from "./Row_elem";
 
 const CryptoList = ({ data }) => {
   if (!data) {
-    return <div className="border h-32" />;
+    return <div className="h-full" />;
   } else {
     return (
       <div className="flex flex-col" style={{ fontFamily: "Barlow Condensed" }}>
@@ -21,11 +21,11 @@ const Rows = ({ elem,rank }) => {
   const { base_unit, volume, last, buy, sell, open } = elem;
 
   return (
-    <div className="flex backdrop-brightness-105 cursor-pointer dark:backdrop-brightness-150 hover:backdrop-brightness-95 dark:hover:backdrop-brightness-200 justify-around text-black dark:text-white rounded-xl mt-2 h-auto items-center uppercase">
+    <div className="justify-evenly md:justify-around flex backdrop-brightness-105 cursor-pointer dark:backdrop-brightness-150 hover:backdrop-brightness-95 dark:hover:backdrop-brightness-200 text-black dark:text-white rounded-xl mt-2 h-auto items-center uppercase">
       <Row_elem value={rank} name={"rank"} type={"rank"} />
-      <Row_elem value={base_unit} name={"currency"} />
-      <Row_elem value={last} name={"Last Trade price"} />
-      <Row_elem value={volume} name={"volume"} />
+      <Row_elem value={base_unit} name={"currency"} type={"currency"} />
+      <Row_elem value={last} name={"Last Trade price"} type={"last"} />
+      <Row_elem value={volume} name={"volume"} type={"volume"} />
       <Row_elem value={sell - buy} name={"profit"} type={"price"} />
       <Row_elem
         value={((last - open) / open) * 100}

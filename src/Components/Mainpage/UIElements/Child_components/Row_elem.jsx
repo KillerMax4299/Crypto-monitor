@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const Row_elem = ({ value, name, type }) => {
   const [color, setColor] = useState("");
+  const [width,setWidth] = useState("");
 
   function colorHandle() {
     if ((type == "price" || type == "percent") && value < 0) {
@@ -10,8 +11,24 @@ const Row_elem = ({ value, name, type }) => {
       setColor("text-green-500");
     }
   }
+  function widthHandle() {
+    if (type == "rank")
+      setWidth("w-8")
+    else if (type == "currency")
+      setWidth("w-8")
+    else if (type == "last")
+      setWidth("w-[90px] text-xl")
+    else if (type == "volume")
+      setWidth("w-9")
+    else if (type == "price")
+      setWidth("w-[60px]")
+    else if (type == "percent")
+      setWidth("w-fit")
+  }
+
   useEffect(() => {
     colorHandle();
+    widthHandle();
   }, []);
 
   const parsedVal = Number.parseFloat(value).toFixed(2);
@@ -27,34 +44,40 @@ const Row_elem = ({ value, name, type }) => {
 
   if (type == "price") {
     return (
-      <div className="w-36 flex flex-col items-center">
-        <span className={`${color} text-4xl`}>{formattedString}</span>
-        <span className="text-slate-500 font-semibold">{name}</span>
+      <div className={`${width} md:w-36 flex flex-col items-center`}>
+        <span className={`${color} md:text-4xl`}>{formattedString}</span>
+        <span className="text-slate-500 md:font-semibold text-xs md:text-base">{name}</span>
       </div>
     );
   } else if (type == "percent") {
     return (
-      <div className="w-36 flex flex-col items-center">
-        <span className={`${color} text-4xl`}>{parsedVal + "%"}</span>
-        <span className="text-slate-500 font-semibold">{name}</span>
+      <div className={`${width} md:w-36 flex flex-col items-center`}>
+        <span className={`${color} md:text-4xl`}>{parsedVal + "%"}</span>
+        <span className="text-slate-500 md:font-semibold text-xs md:text-base">
+          {name}
+        </span>
       </div>
     );
   } else if (type == "rank") {
     return (
-      <div className="w-36 flex flex-col items-center">
-        <span className={`text-4xl`}>{value}</span>
-        <span className="text-slate-500 font-semibold">{name}</span>
+      <div className={`${width} md:w-36 flex flex-col items-center`}>
+        <span className={`text-3xl md:text-4xl`}>{value}</span>
+        <span className="text-slate-500 md:font-semibold text-xs md:text-base">
+          {name}
+        </span>
       </div>
     );
   } else {
     return (
-      <div className="w-36 flex flex-col items-center">
+      <div className={`${width} md:w-36 flex flex-col items-center`}>
         {isNaN(parsedVal) ? (
-          <span className="text-4xl">{value}</span>
+          <span className="md:text-4xl">{value}</span>
         ) : (
-          <span className="text-4xl">{parsedVal}</span>
+          <span className="md:text-4xl">{parsedVal}</span>
         )}
-        <span className="text-slate-500 font-semibold">{name}</span>
+        <span className="text-slate-500 md:font-semibold text-xs md:text-base">
+          {name}
+        </span>
       </div>
     );
   }
