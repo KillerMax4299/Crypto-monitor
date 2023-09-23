@@ -4,7 +4,6 @@ const DataElem = ({ value, name, type }) => {
 
   const [color, setColor] = useState("")
   
-
   function colorHandle() {
     if ((type == "price" || type == "percent") && value < 0) {
       setColor("text-red-500")
