@@ -2,13 +2,18 @@ import Row_elem from "./Row_elem";
 
 const CryptoList = ({ data }) => {
   if (!data) {
-    return <div className="h-full" />;
+    return (
+      <div className="h-[560px] bg-sky-200 dark:bg-slate-800 animate-pulse" />
+    );
   } else {
     return (
-      <div className="flex flex-col" style={{ fontFamily: "Barlow Condensed" }}>
+      <div
+        className="flex  flex-col"
+        style={{ fontFamily: "Barlow Condensed" }}
+      >
         {/* <Rows elem={""} /> */}
-        {data.slice(1).map((elem,rank) => {
-          return <Rows elem={elem} rank={rank+2}/>;
+        {data.slice(1).map((elem, rank) => {
+          return <Rows elem={elem} rank={rank + 2} />;
         })}
       </div>
     );
@@ -17,7 +22,7 @@ const CryptoList = ({ data }) => {
 
 export default CryptoList;
 
-const Rows = ({ elem,rank }) => {
+const Rows = ({ elem, rank }) => {
   const { base_unit, volume, last, buy, sell, open } = elem;
 
   return (
@@ -35,5 +40,3 @@ const Rows = ({ elem,rank }) => {
     </div>
   );
 };
-
-

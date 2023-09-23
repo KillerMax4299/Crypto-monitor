@@ -24,7 +24,7 @@ const UIElelemts = ({ changeTheme, dark }) => {
     dataFetch();
     const intervalId = setInterval(() => {
       dataFetch();
-    }, 600);
+    }, 60000);
 
     return () => {
       clearInterval(intervalId);
