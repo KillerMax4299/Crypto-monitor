@@ -10,7 +10,7 @@ const UIElelemts = ({ changeTheme, dark }) => {
 
   async function dataFetch() {
     await axios
-      .get("https://crypto-api-iwyr.onrender.com/top10")
+      .get("https://crypto-api-beryl.vercel.app/top10")
       .then(({ data }) => {
         setDataset(data);
       });
